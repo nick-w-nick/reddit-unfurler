@@ -25,5 +25,8 @@ app.get('/', async (req, res) => {
     return res.status(200).send('Hello, World!');
 });
 
-// import helloRoute from './routes/hello.js';
-// app.use('/hello', helloRoute);
+import oauthRoute from './routes/oauth.js';
+app.use('/oauth', oauthRoute);
+
+import testRoute from './routes/test.js';
+app.use('/test', testRoute);
