@@ -28,5 +28,5 @@ app.get('/', async (req, res) => {
 import oauthRoute from './routes/oauth.js';
 app.use('/oauth', oauthRoute);
 
-import testRoute from './routes/test.js';
-app.use('/test', testRoute);
+import submissionRoute from './routes/submission.js';
+app.use('/submission', submissionRoute);
