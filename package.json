@@ -23,7 +23,9 @@
         "nodemon": "^2.0.15"
     },
     "dependencies": {
-        "express": "^4.17.3"
+        "axios": "^0.26.1",
+        "express": "^4.17.3",
+        "snoowrap": "^1.23.0"
     },
     "type": "module"
 }
