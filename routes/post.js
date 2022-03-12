@@ -3,11 +3,11 @@ const router = Router();
 
 import reddit from '../utils/reddit/connect.js';
 
-router.get('/:submission', async (req, res) => {
-    const { submission } = req.params;
+router.get('/:postId', async (req, res) => {
+    const { postId } = req.params;
     
     try {
-        const post = await reddit.getSubmission(submission).fetch();
+        const post = await reddit.getSubmission(postId).fetch();
         
         const { 
             subreddit_name_prefixed: subreddit,
