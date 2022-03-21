@@ -1,10 +1,7 @@
-import { Router } from 'express';
-const router = Router();
+import reddit from '../../../utils/reddit/connect.js';
 
-import reddit from '../utils/reddit/connect.js';
-
-router.get('/:postId', async (req, res) => {
-    const { postId } = req.params;
+export default async function handler(req, res) {
+    const { postId } = req.query;
     
     try {
         const post = await reddit.getSubmission(postId).fetch();
@@ -35,7 +32,7 @@ router.get('/:postId', async (req, res) => {
             };
         });
         
-        return res.status(200).send({
+        return res.status(200).json({
             status: 'success',
             data: {
                 subreddit,
@@ -53,11 +50,9 @@ router.get('/:postId', async (req, res) => {
             }
         });
     } catch (error) {
-        return res.status(500).send({
+        return res.status(500).json({
             status: 'error',
             data: error.message
         });
     }
-});
-
-export default router;
+};
