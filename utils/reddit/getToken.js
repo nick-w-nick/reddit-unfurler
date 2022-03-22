@@ -2,9 +2,11 @@ import Axios from 'axios';
 
 const getToken = async (code) => {
     
+    const toBase64 = (string) => Buffer.from(string).toString('base64');
+    
     const config = {
         headers: {
-            Authorization: `Basic ${process.env.REDDIT_BASIC_AUTH}`,
+            Authorization: `Basic ${toBase64(process.env.REDDIT_CLIENT_ID + ':' + process.env.REDDIT_SECRET)}`,
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     };
