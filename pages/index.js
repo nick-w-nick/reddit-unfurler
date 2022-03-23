@@ -6,14 +6,18 @@ import { Sun, MoonStars } from 'tabler-icons-react';
 
 import PostCard from '../components/PostCard.js';
 export default function Index(props) {
-    
-    const getPost = async (postId) => {
-        const response = await Axios.get(`/api/post/${postId}`);
-        console.log(response.data);
-        return setPost({ id: postId, data: response.data });
+    const parseIdFromURL = (url) => {
+        const postId = url.split('comments/')[1].split('/')[0];
+        return postId;
     };
     
-    const [post, setPost] = useState({ id: null, data: null });
+    const getPost = async (postUrl) => {
+        const postId = parseIdFromURL(postUrl);
+        const response = await Axios.get(`/api/post/${postId}`);
+        return setPost({ ...post, id: postId, data: response.data });
+    };
+    
+    const [post, setPost] = useState({ url: null, id: null, data: null });
     
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
     const dark = colorScheme === 'dark';
@@ -27,11 +31,10 @@ export default function Index(props) {
             >
                 {dark ? <Sun size={18} /> : <MoonStars size={18} />}
             </ActionIcon>
-            <div>Hello, World!</div>
-            <TextInput label="Post ID" description="tihp2q" onChange={e => setPost({ id: e.target.value, data: null })} />
-            <Button onClick={async () => await getPost(post.id)}>Get Post</Button>
+            <TextInput label="Post URL" description="Link to the reddit post" style={{ width: 400 }} mb={10} onChange={e => setPost({ ...post, url: e.target.value })} />
+            <Button mb={20} onClick={async () => await getPost(post.url)}>Get Post</Button>
             
-            {post.data && <PostCard id={post.id} data={post.data}/>}
+            {post.data && <PostCard data={post.data}/>}
         </Container>
     );
 };
