@@ -1,4 +1,4 @@
-import { Card, Image, Text, Group, useMantineTheme, Title, Avatar, AvatarsGroup, Center } from '@mantine/core';
+import { Card, Image, Text, useMantineTheme, Title, Avatar, AvatarsGroup, Box, Center } from '@mantine/core';
 import { ArrowNarrowUp, Message2, Calendar } from 'tabler-icons-react';
 
 export default function PostCard({ data }) {
@@ -53,19 +53,30 @@ export default function PostCard({ data }) {
                 
                 <Text color={secondaryColor} size="md" mt={10}>in <Text color={secondaryColor} size="sm" weight="600" component="span">{subreddit} </Text>by <Text color={secondaryColor} size="sm" weight="600" component="span">u/{author}</Text></Text>
                 
-                <Group position="left">
-                    <Text weight={500} color={secondaryColor} size="sm" mt={10}><ArrowNarrowUp size={15} />{upvotes}</Text>
-                    <Text weight={500} color={secondaryColor} size="sm" mt={10}><Message2 size={15} />{comments}</Text>
-                    <Text weight={500} color={secondaryColor} size="sm" mt={10}><Calendar size={15} />{created}</Text>
-                    <AvatarsGroup size={20} limit={3} total={topThree < 3 && totalAwards}>
-                        {topThree.map(award => {
-                            return (
-                                <Avatar src={award} key={award} />
-                            );
-                        })}
-                    </AvatarsGroup>
-                    <Text color={secondaryColor} size="sm" mt={10}>{totalAwards}</Text>
-                </Group>
+                <Box color={secondaryColor} mt={5}>
+                    <Center inline>
+                        <ArrowNarrowUp size={25} style={{ verticalAlign: 'middle' }}/>
+                        <Box style={{ fontWeight: 600, fontSize: '15px' }}>{upvotes}</Box>
+                    </Center>
+                    <Center inline style={{ marginLeft: '10px' }}>
+                        <Message2 size={25} style={{ verticalAlign: 'middle' }} />
+                        <Box style={{ fontWeight: 600, fontSize: '15px' }}>{comments}</Box>
+                    </Center>
+                    <Center inline style={{ marginLeft: '10px' }}>
+                        <Calendar size={25} style={{ verticalAlign: 'middle' }} />
+                        <Box style={{ fontWeight: 600, fontSize: '15px' }}>{created}</Box>
+                    </Center>
+                    <Center inline style={{ marginLeft: '10px' }}>
+                        <AvatarsGroup size={25} limit={3} total={topThree < 3 && totalAwards}>
+                            {topThree.map(award => {
+                                return (
+                                    <Avatar src={award} key={award} />
+                                );
+                            })}
+                        </AvatarsGroup>
+                        <Box style={{ fontWeight: 600, fontSize: '15px' }}>{totalAwards}</Box>
+                    </Center>
+                </Box>
             </div>
         </>
     );
