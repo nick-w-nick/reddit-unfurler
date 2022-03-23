@@ -42,10 +42,10 @@ export default function PostCard({ data }) {
     
     return (
         <>
-            <div style={{ width: 400, margin: 'auto',  }} >
+            <div style={{ width: 600, margin: 'auto' }} >
                 <Card shadow="sm" p="lg">
                     <Card.Section>
-                        <Image src={image} width={400} alt={title} />
+                        <Image src={image} width={600} alt={title} />
                     </Card.Section>
                 </Card>
                 
@@ -55,19 +55,19 @@ export default function PostCard({ data }) {
                 
                 <Box color={secondaryColor} mt={5}>
                     <Center inline>
-                        <ArrowNarrowUp size={25} style={{ verticalAlign: 'middle' }}/>
+                        <ArrowNarrowUp size={20} style={{ verticalAlign: 'middle' }}/>
                         <Box style={{ fontWeight: 600, fontSize: '15px' }}>{upvotes}</Box>
                     </Center>
                     <Center inline style={{ marginLeft: '10px' }}>
-                        <Message2 size={25} style={{ verticalAlign: 'middle' }} />
+                        <Message2 size={20} style={{ verticalAlign: 'middle' }} />
                         <Box style={{ fontWeight: 600, fontSize: '15px' }}>{comments}</Box>
                     </Center>
                     <Center inline style={{ marginLeft: '10px' }}>
-                        <Calendar size={25} style={{ verticalAlign: 'middle' }} />
+                        <Calendar size={20} style={{ verticalAlign: 'middle' }} />
                         <Box style={{ fontWeight: 600, fontSize: '15px' }}>{created}</Box>
                     </Center>
                     <Center inline style={{ marginLeft: '10px' }}>
-                        <AvatarsGroup size={25} limit={3} total={topThree < 3 && totalAwards}>
+                        <AvatarsGroup size={20} limit={3} total={topThree < 3 && totalAwards}>
                             {topThree.map(award => {
                                 return (
                                     <Avatar src={award} key={award} />
