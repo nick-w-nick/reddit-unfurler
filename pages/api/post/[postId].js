@@ -1,18 +1,19 @@
-import reddit from '../../../utils/reddit/connect.js';
+import Axios from 'axios';
 
 export default async function handler(req, res) {
     const { postId } = req.query;
     
     try {
-        const post = await reddit.getSubmission(postId).fetch();
+        const response = await Axios.get(`https://reddit.com/${postId}.json`);
+        const post = response.data[0].data.children[0].data;
         
         const { 
             subreddit_name_prefixed: subreddit,
             title,
-            author: { name: authorName },
+            author,
             ups: upvotes,
             downs: downvotes,
-            preview: { images } = {},
+            url: imageUrl,
             permalink,
             created,
             num_comments: comments,
@@ -20,6 +21,8 @@ export default async function handler(req, res) {
             all_awardings,
             selftext: body,
         } = post;
+        
+        
         
         const awards = all_awardings.map(award => {
             const { icon_url, resized_icons, count, name } = award;
@@ -38,10 +41,10 @@ export default async function handler(req, res) {
                 subreddit,
                 title,
                 body,
-                author: authorName,
+                author,
                 upvotes,
                 downvotes,
-                image: images?.[0].source.url,
+                image: imageUrl,
                 permalink: `https://reddit.com${permalink}`,
                 comments,
                 created: new Date(created * 1000).toLocaleDateString(),
