@@ -26,10 +26,11 @@ export default async function handler(req, res) {
             const { icon_url, resized_icons, count, name } = award;
             const icon = resized_icons.filter(icon => icon.width === 64)[0] || icon_url;
 
-            if (icon.url.includes('amp;')) icon.url = icon.url.replaceAll('amp;', '');
-
             return {
-                icon,
+                icon: {
+                    ...icon,
+                    url: icon.url.includes('amp;') ? icon.url.replaceAll('amp;', '') : icon.url,
+                },
                 count,
                 name
             };
