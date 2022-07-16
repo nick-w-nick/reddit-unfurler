@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { parseIdFromURL } from '../utils/utils';
 
 import Axios from 'axios';

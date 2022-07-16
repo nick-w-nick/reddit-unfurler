@@ -1,6 +1,3 @@
-import Axios from 'axios';
-import { useState } from 'react';
-
 import {
     TextInput,
     Container,
@@ -11,11 +8,10 @@ import {
     Loader
 } from '@mantine/core';
 import { Sun, MoonStars, AlertCircle, CircleCheck } from 'tabler-icons-react';
-
 import PostCard from '../components/PostCard.js';
-import { parseIdFromURL } from '../utils/utils.js';
 import usePost from '../hooks/usePost.js';
-export default function Index(props) {
+
+export default function Index() {
     const { post, loading, error, fetchPost } = usePost();
 
     const getPostAsImage = () => {
