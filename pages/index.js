@@ -64,32 +64,6 @@ export default function Index() {
                         )}
                     </>
                 }
-                // rightSection={
-                //     <div radius={0} p="6px" style={{ display: 'flex', padding: '5px' }}>
-                //         {error && (
-                //             <AlertCircle
-                //                 size="sm"
-                //                 color="#EF4444"
-                //                 style={{ display: 'block', opacity: 0.5 }}
-                //                 // breaks when typing
-                //             />
-                //         )}
-                //         {loading && (
-                //             <Loader
-                //                 color="#4ADE80"
-                //                 size={'sm'}
-                //                 style={{ display: 'block', opacity: 0.5 }}
-                //             />
-                //         )}
-                //         {post && (
-                //             <CircleCheck
-                //                 color="#22C55E"
-                //                 size={'sm'}
-                //                 style={{ display: 'block', opacity: 0.5 }}
-                //             />
-                //         )}
-                //     </div>
-                // }
             />
             <Button mb={20} disabled={!post} onClick={() => getPostAsImage()}>
                 Get Post
