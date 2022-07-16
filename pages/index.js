@@ -42,21 +42,54 @@ export default function Index() {
                 }}
                 mb={10}
                 rightSection={
-                    <Badge
-                        radius={0}
-                        p="6px"
-                        style={{
-                            width: '100%',
-                            height: '100%',
-                            borderBottomRightRadius: '4px',
-                            borderTopRightRadius: '4px'
-                        }}
-                    >
-                        {error && <AlertCircle style={{ display: 'block', opacity: 0.5 }} />}
-                        {loading && <Loader style={{ display: 'block', opacity: 0.5 }} />}
-                        {post && <CircleCheck style={{ display: 'block', opacity: 0.5 }} />}
-                    </Badge>
+                    <>
+                        {error && (
+                            <AlertCircle
+                                color="#EF4444"
+                                style={{ display: 'block', opacity: 0.5 }}
+                                // breaks when typing
+                            />
+                        )}
+                        {loading && (
+                            <Loader
+                                color="#4ADE80"
+                                style={{ display: 'block', opacity: 0.5, margin: '7px' }}
+                            />
+                        )}
+                        {post && (
+                            <CircleCheck
+                                color="#22C55E"
+                                style={{ display: 'block', opacity: 0.5 }}
+                            />
+                        )}
+                    </>
                 }
+                // rightSection={
+                //     <div radius={0} p="6px" style={{ display: 'flex', padding: '5px' }}>
+                //         {error && (
+                //             <AlertCircle
+                //                 size="sm"
+                //                 color="#EF4444"
+                //                 style={{ display: 'block', opacity: 0.5 }}
+                //                 // breaks when typing
+                //             />
+                //         )}
+                //         {loading && (
+                //             <Loader
+                //                 color="#4ADE80"
+                //                 size={'sm'}
+                //                 style={{ display: 'block', opacity: 0.5 }}
+                //             />
+                //         )}
+                //         {post && (
+                //             <CircleCheck
+                //                 color="#22C55E"
+                //                 size={'sm'}
+                //                 style={{ display: 'block', opacity: 0.5 }}
+                //             />
+                //         )}
+                //     </div>
+                // }
             />
             <Button mb={20} disabled={!post} onClick={() => getPostAsImage()}>
                 Get Post
