@@ -45,21 +45,21 @@ export default function Index() {
                     <>
                         {error && (
                             <AlertCircle
-                                color="#EF4444"
-                                style={{ display: 'block', opacity: 0.5 }}
+                                color="#fa5252"
+                                style={{ display: 'block', opacity: 0.9 }}
                                 // breaks when typing
                             />
                         )}
                         {loading && (
                             <Loader
-                                color="#4ADE80"
-                                style={{ display: 'block', opacity: 0.5, margin: '7px' }}
+                                color="blue"
+                                style={{ display: 'block', opacity: 0.9, margin: '7px' }}
                             />
                         )}
                         {post && (
                             <CircleCheck
-                                color="#22C55E"
-                                style={{ display: 'block', opacity: 0.5 }}
+                                color="#38d9a9"
+                                style={{ display: 'block', opacity: 0.9 }}
                             />
                         )}
                     </>

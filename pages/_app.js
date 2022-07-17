@@ -17,7 +17,25 @@ export default function App(props) {
             </Head> */}
 
             <MantineProvider
-                theme={{ colorScheme, loader: 'dots' }}
+                theme={{
+                    colorScheme,
+                    loader: 'dots',
+                    primaryColor: 'redditOrange',
+                    colors: {
+                        redditOrange: [
+                            '#F06A38',
+                            '#F2622D',
+                            '#F55B22',
+                            '#F85417',
+                            '#FB4C0B',
+                            '#FF4500',
+                            '#F44504',
+                            '#E94407',
+                            '#DF440A',
+                            '#D5430D'
+                        ]
+                    }
+                }}
                 withGlobalStyles
                 withNormalizeCS
             >
