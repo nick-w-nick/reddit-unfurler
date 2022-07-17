@@ -4,8 +4,9 @@ import {
     Button,
     ActionIcon,
     useMantineColorScheme,
-    Badge,
-    Loader
+    Loader,
+    Group,
+    MediaQuery
 } from '@mantine/core';
 import { Sun, MoonStars, AlertCircle, CircleCheck } from 'tabler-icons-react';
 import PostCard from '../components/PostCard.js';
@@ -21,53 +22,57 @@ export default function Index() {
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
     const dark = colorScheme === 'dark';
     return (
-        <Container>
-            <ActionIcon
-                variant="outline"
-                color={dark ? 'yellow' : 'blue'}
-                onClick={() => toggleColorScheme()}
-                title="Toggle color scheme"
-            >
-                {dark ? <Sun size={18} /> : <MoonStars size={18} />}
-            </ActionIcon>
+        <Container size={'md'}>
+            <Group align={'end'}>
+                <MediaQuery smallerThan={'xs'} styles={{ width: '100%', flex: 'none !important' }}>
+                    <TextInput
+                        onChange={e => fetchPost(e.currentTarget.value)}
+                        value="https://www.reddit.com/r/DIY/comments/w0n6m0/minisplit_installation_revised_and_updated/"
+                        label="Post URL"
+                        style={{ flex: '1' }}
+                        error={error}
+                        description="Link to the reddit post"
+                        rightSection={
+                            <>
+                                {error && (
+                                    <AlertCircle
+                                        color="#fa5252"
+                                        style={{ display: 'block', opacity: 0.9 }}
+                                        // breaks when typing
+                                    />
+                                )}
+                                {loading && (
+                                    <Loader
+                                        color="blue"
+                                        style={{ display: 'block', opacity: 0.9, margin: '7px' }}
+                                    />
+                                )}
+                                {post && (
+                                    <CircleCheck
+                                        color="#38d9a9"
+                                        style={{ display: 'block', opacity: 0.9 }}
+                                    />
+                                )}
+                            </>
+                        }
+                    />
+                </MediaQuery>
 
-            <TextInput
-                onChange={e => fetchPost(e.currentTarget.value)}
-                label="Post URL"
-                error={error}
-                description="Link to the reddit post"
-                style={{ width: 400 }}
-                styles={{
-                    wrapper: { overflow: 'hidden' }
-                }}
-                mb={10}
-                rightSection={
-                    <>
-                        {error && (
-                            <AlertCircle
-                                color="#fa5252"
-                                style={{ display: 'block', opacity: 0.9 }}
-                                // breaks when typing
-                            />
-                        )}
-                        {loading && (
-                            <Loader
-                                color="blue"
-                                style={{ display: 'block', opacity: 0.9, margin: '7px' }}
-                            />
-                        )}
-                        {post && (
-                            <CircleCheck
-                                color="#38d9a9"
-                                style={{ display: 'block', opacity: 0.9 }}
-                            />
-                        )}
-                    </>
-                }
-            />
-            <Button mb={20} disabled={!post} onClick={() => getPostAsImage()}>
-                Get Post
-            </Button>
+                <ActionIcon
+                    size={'36px'}
+                    variant="outline"
+                    color={dark ? 'yellow' : 'blue'}
+                    onClick={() => toggleColorScheme()}
+                    title="Toggle color scheme"
+                >
+                    {dark ? <Sun size={20} /> : <MoonStars size={20} />}
+                </ActionIcon>
+
+                <Button onClick={() => getPostAsImage()}>Get Post</Button>
+            </Group>
+
+            {/* disabled={!post} */}
+
             {post && <PostCard post={post} />}
         </Container>
     );
