@@ -7,8 +7,11 @@ import {
     Avatar,
     AvatarsGroup,
     Box,
-    Center
+    Center,
+    Paper,
+    Container
 } from '@mantine/core';
+import ReactMarkdown from 'react-markdown';
 import { ArrowNarrowUp, Message2, Calendar } from 'tabler-icons-react';
 
 export default function PostCard({ post }) {
@@ -54,46 +57,49 @@ export default function PostCard({ post }) {
     };
 
     return (
-        <>
-            <div style={{ width: 600, margin: 'auto', border: '2px solid red' }}>
-                <Card shadow="sm" p="lg">
+        <Container size={'sm'}>
+            <Paper px={'lg'} py={'lg'}>
+                {/* <Card shadow="sm" p="lg">
                     <Card.Section>
+                        remove
                         <Image src={image} width={600} alt={title} />
                     </Card.Section>
-                </Card>
-
-                <Title order={4} mt={10}>
-                    {title}
-                </Title>
-
-                <Text color={secondaryColor} size="md" mt={10}>
-                    in{' '}
+                </Card> */}
+                <Text color={secondaryColor} size="md">
+                    In{' '}
                     <Text color={secondaryColor} size="sm" weight="600" component="span">
                         {subreddit}{' '}
                     </Text>
-                    by{' '}
+                    Post by{' '}
                     <Text color={secondaryColor} size="sm" weight="600" component="span">
                         u/{author}
                     </Text>
                 </Text>
+                <Title order={4} mt={10}>
+                    {title}
+                </Title>
 
-                <Box color={secondaryColor} mt={5}>
+                <Box color={secondaryColor}>
                     <Center inline>
                         <ArrowNarrowUp size={20} style={{ verticalAlign: 'middle' }} />
-                        <Box style={{ fontWeight: 600, fontSize: '15px' }}>{upvotes}</Box>
+                        <Box>{upvotes}</Box>
                     </Center>
                     <Center inline style={{ marginLeft: '10px' }}>
                         <Message2 size={20} style={{ verticalAlign: 'middle' }} />
-                        <Box style={{ fontWeight: 600, fontSize: '15px' }}>{comments}</Box>
+                        <Box>{comments}</Box>
                     </Center>
                     <Center inline style={{ marginLeft: '10px' }}>
                         <Calendar size={20} style={{ verticalAlign: 'middle' }} />
-                        <Box style={{ fontWeight: 600, fontSize: '15px' }}>{created}</Box>
+                        <Box>{created}</Box>
                     </Center>
 
                     <RenderAwards />
+
+                    <ReactMarkdown components={{ image: img => console.log(img) }}>
+                        {body}
+                    </ReactMarkdown>
                 </Box>
-            </div>
-        </>
+            </Paper>
+        </Container>
     );
 }
