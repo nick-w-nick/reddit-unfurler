@@ -1,6 +1,6 @@
 // import Head from 'next/head';
 import { useState } from 'react';
-import { MantineProvider, ColorSchemeProvider } from '@mantine/core';
+import { MantineProvider, ColorSchemeProvider, Global } from '@mantine/core';
 
 export default function App(props) {
     const { Component, pageProps } = props;
@@ -39,6 +39,22 @@ export default function App(props) {
                 withGlobalStyles
                 withNormalizeCS
             >
+                <Global
+                    styles={theme => ({
+                        '*, *::before, *::after': {
+                            boxSizing: 'border-box'
+                        },
+
+                        body: {
+                            ...theme.fn.fontStyles(),
+                            backgroundColor:
+                                theme.colorScheme === 'dark'
+                                    ? theme.colors.dark[9]
+                                    : theme.colors.gray[2],
+                            color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black
+                        }
+                    })}
+                />
                 <Component {...pageProps} />
             </MantineProvider>
         </ColorSchemeProvider>
