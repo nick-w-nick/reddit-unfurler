@@ -9,16 +9,20 @@ import {
     Box,
     Center,
     Paper,
-    Container
+    Container,
+    Group
 } from '@mantine/core';
 import ReactMarkdown from 'react-markdown';
-import { ArrowNarrowUp, Message2, Calendar } from 'tabler-icons-react';
+import { ArrowBigTop as ArrowNarrowUp, MessageCircle2, Calendar } from 'tabler-icons-react';
 
 export default function PostCard({ post }) {
     const theme = useMantineTheme();
 
-    const secondaryColor =
-        theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7];
+    const primaryTextColor =
+        theme.colorScheme === 'dark' ? theme.colors.gray[2] : theme.colors.dark[9];
+
+    const secondaryTextColor =
+        theme.colorScheme === 'dark' ? theme.colors.gray[5] : theme.colors.dark[9];
 
     const {
         subreddit,
@@ -42,6 +46,10 @@ export default function PostCard({ post }) {
 
         const totalAwards = awards.reduce((acc, award) => acc + award.count, 0);
 
+        if (awards.length === 0) {
+            return null;
+        }
+
         return (
             <Center inline style={{ marginLeft: '10px' }}>
                 <AvatarsGroup size={20} limit={3} total={topThree < 3 && totalAwards}>
@@ -57,35 +65,57 @@ export default function PostCard({ post }) {
     };
 
     return (
-        <Container size={'sm'}>
-            <Paper px={'lg'} py={'lg'}>
+        // Get snapshot of this element
+        <Container mt={'lg'} size={'sm'} p="md">
+            <Paper px={'lg'} py={'lg'} shadow="xl">
                 {/* <Card shadow="sm" p="lg">
                     <Card.Section>
                         remove
                         <Image src={image} width={600} alt={title} />
                     </Card.Section>
                 </Card> */}
-                <Text color={secondaryColor} size="md">
-                    In{' '}
-                    <Text color={secondaryColor} size="sm" weight="600" component="span">
-                        {subreddit}{' '}
-                    </Text>
-                    Post by{' '}
-                    <Text color={secondaryColor} size="sm" weight="600" component="span">
-                        u/{author}
-                    </Text>
+                <Text color={primaryTextColor}>
+                    <Group spacing={'xs'}>
+                        <Avatar
+                            radius={'xl'}
+                            src={'https://i.pravatar.cc/150?img=1'}
+                            size={'sm'}
+                            style={{ display: 'inline-block' }}
+                        />
+                        <Text color={primaryTextColor} size="sm" weight="600" component="span">
+                            {subreddit}
+                        </Text>
+                        <Text
+                            mx={'-5px'}
+                            color={secondaryTextColor}
+                            size="xs"
+                            weight="200"
+                            component="span"
+                        >
+                            •
+                        </Text>
+
+                        <Text
+                            style={{ verticalAlign: 'middle', display: 'inline-block' }}
+                            size="sm"
+                            color={secondaryTextColor}
+                            component="span"
+                        >
+                            Posted by u/{author}
+                        </Text>
+                    </Group>
                 </Text>
-                <Title order={4} mt={10}>
+                <Title style={{ color: primaryTextColor }} order={4} mt={10}>
                     {title}
                 </Title>
 
-                <Box color={secondaryColor}>
+                <Box mt={'lg'}>
                     <Center inline>
                         <ArrowNarrowUp size={20} style={{ verticalAlign: 'middle' }} />
                         <Box>{upvotes}</Box>
                     </Center>
                     <Center inline style={{ marginLeft: '10px' }}>
-                        <Message2 size={20} style={{ verticalAlign: 'middle' }} />
+                        <MessageCircle2 size={20} style={{ verticalAlign: 'middle' }} />
                         <Box>{comments}</Box>
                     </Center>
                     <Center inline style={{ marginLeft: '10px' }}>
