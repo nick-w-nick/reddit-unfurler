@@ -21,6 +21,7 @@ export default function App(props) {
                     colorScheme,
                     loader: 'dots',
                     primaryColor: 'redditOrange',
+                    fontFamily: 'Open Sans, sans-serif',
                     colors: {
                         redditOrange: [
                             '#F06A38',
