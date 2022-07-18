@@ -1,7 +1,9 @@
-import { Loader, TextInput } from '@mantine/core';
+import { Loader, TextInput, useMantineTheme } from '@mantine/core';
 import { AlertCircle, CircleCheck } from 'tabler-icons-react';
 
 const RedditLinkInput = ({ post, error, loading, fetchPost }) => {
+    const theme = useMantineTheme();
+
     return (
         <TextInput
             onChange={e => fetchPost(e.currentTarget.value)}
@@ -73,7 +75,7 @@ const RedditLinkInput = ({ post, error, loading, fetchPost }) => {
                 <>
                     {error && (
                         <AlertCircle
-                            color="#fa5252" // theme.colors.red[6]
+                            color={theme.colors.red[6]}
                             style={{ display: 'block', opacity: 0.9 }}
                         />
                     )}
@@ -85,7 +87,7 @@ const RedditLinkInput = ({ post, error, loading, fetchPost }) => {
                     )}
                     {post && (
                         <CircleCheck
-                            color="#40c057" // theme.colors.green[6]
+                            color={theme.colors.green[6]}
                             style={{ display: 'block', opacity: 0.9 }}
                         />
                     )}
