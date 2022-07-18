@@ -4,7 +4,9 @@ import {
     ActionIcon,
     useMantineColorScheme,
     Group,
-    MediaQuery
+    MediaQuery,
+    useMantineTheme,
+    Title
 } from '@mantine/core';
 
 import { Sun, MoonStars, BrandReddit } from 'tabler-icons-react';
@@ -20,9 +22,15 @@ export default function Index() {
     };
 
     const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+    const theme = useMantineTheme();
     const dark = colorScheme === 'dark';
     return (
         <Container size={'md'}>
+            <Title className="hero" color={theme.colors.indigo}>
+                <span className="reddit">reddit</span>
+                <br /> as <br />
+                image
+            </Title>
             <Group align={'end'}>
                 <MediaQuery smallerThan={'xs'} styles={{ width: '100%', flex: 'none !important' }}>
                     <RedditLinkInput

@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'VAG Rounded';
+    src: url('./VAG Rounded Regular.ttf');
+}
+
+// Reddit orange  #ff4500
+
+.reddit {
+    font-family: VAG Rounded;
+
+    color: #ff4500;
+}
+
+.hero {
+    margin-top: 50px;
+    font-size: 5em;
+    text-align: center;
+    font-weight: 500;
+
+    line-height: 1em;
+    color: #ff4500;
+
+    /* -webkit-text-stroke: 2px #ff4500; */
+}
