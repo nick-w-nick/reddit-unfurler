@@ -8,7 +8,8 @@ import {
     Group,
     MediaQuery
 } from '@mantine/core';
-import { Sun, MoonStars, AlertCircle, CircleCheck } from 'tabler-icons-react';
+
+import { Sun, MoonStars, AlertCircle, CircleCheck, BrandReddit } from 'tabler-icons-react';
 import PostCard from '../components/PostCard.js';
 import usePost from '../hooks/usePost.js';
 
@@ -30,6 +31,64 @@ export default function Index() {
                         value="https://www.reddit.com/r/DIY/comments/w0n6m0/minisplit_installation_revised_and_updated/"
                         label="Post URL"
                         style={{ flex: '1' }}
+                        sx={theme => {
+                            if (post) {
+                                return {
+                                    input: {
+                                        borderColor: theme.colors.green[6] + ' !important',
+                                        '&:focus': {
+                                            borderColor:
+                                                theme.colorScheme === 'dark'
+                                                    ? theme.colors.green[6] + ' !important'
+                                                    : theme.colors.green[6] + ' !important'
+                                        },
+                                        '&:focus-within': {
+                                            borderColor:
+                                                theme.colorScheme === 'dark'
+                                                    ? theme.colors.green[6] + ' !important'
+                                                    : theme.colors.green[6] + ' !important'
+                                        }
+                                    }
+                                };
+                            }
+
+                            if (error) {
+                                return {
+                                    input: {
+                                        '&:focus': {
+                                            borderColor:
+                                                theme.colorScheme === 'dark'
+                                                    ? theme.colors.red[6] + ' !important'
+                                                    : theme.colors.red[6] + ' !important'
+                                        },
+                                        '&:focus-within': {
+                                            borderColor:
+                                                theme.colorScheme === 'dark'
+                                                    ? theme.colors.red[6] + ' !important'
+                                                    : theme.colors.red[6] + ' !important'
+                                        }
+                                    }
+                                };
+                            }
+
+                            if (!error)
+                                return {
+                                    input: {
+                                        '&:focus': {
+                                            borderColor:
+                                                theme.colorScheme === 'dark'
+                                                    ? theme.colors.blue[7] + ' !important'
+                                                    : theme.colors.blue[5] + ' !important'
+                                        },
+                                        '&:focus-within': {
+                                            borderColor:
+                                                theme.colorScheme === 'dark'
+                                                    ? theme.colors.blue[7] + ' !important'
+                                                    : theme.colors.blue[5] + ' !important'
+                                        }
+                                    }
+                                };
+                        }}
                         error={error}
                         description="Link to the reddit post"
                         rightSection={
@@ -38,7 +97,6 @@ export default function Index() {
                                     <AlertCircle
                                         color="#fa5252"
                                         style={{ display: 'block', opacity: 0.9 }}
-                                        // breaks when typing
                                     />
                                 )}
                                 {loading && (
@@ -68,7 +126,9 @@ export default function Index() {
                     {dark ? <Sun size={20} /> : <MoonStars size={20} />}
                 </ActionIcon>
 
-                <Button onClick={() => getPostAsImage()}>Get Post</Button>
+                <Button leftIcon={<BrandReddit size={20} />} onClick={() => getPostAsImage()}>
+                    Unfurl
+                </Button>
             </Group>
 
             {/* disabled={!post} */}
