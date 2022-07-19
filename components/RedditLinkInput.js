@@ -7,7 +7,6 @@ const RedditLinkInput = ({ post, error, loading, fetchPost }) => {
     return (
         <TextInput
             onChange={e => fetchPost(e.currentTarget.value)}
-            value="https://www.reddit.com/r/DIY/comments/w0n6m0/minisplit_installation_revised_and_updated/"
             label="Reddit URL"
             description="Link to the reddit post"
             error={error}

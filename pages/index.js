@@ -9,7 +9,7 @@ import {
     Title
 } from '@mantine/core';
 
-import { Sun, MoonStars, BrandReddit } from 'tabler-icons-react';
+import { Sun, MoonStars, BrandReddit, Download } from 'tabler-icons-react';
 import PostCard from '../components/PostCard.js';
 import usePost from '../hooks/usePost.js';
 import RedditLinkInput from '../components/RedditLinkInput.js';
@@ -59,7 +59,25 @@ export default function Index() {
                     Unfurl
                 </Button>
             </Group>
-            {post && <PostCard post={post} />}
+            {post && (
+                <Container
+                    mt={'30px'}
+                    p="md"
+                    style={{
+                        border: '3px solid white',
+                        borderRadius: '10px'
+                    }}
+                >
+                    <Container p="sm">
+                        <Group position="right">
+                            <Button leftIcon={<Download size={16} />} variant="outline">
+                                Export
+                            </Button>
+                        </Group>
+                    </Container>
+                    <PostCard post={post} />
+                </Container>
+            )}
         </Container>
     );
 }

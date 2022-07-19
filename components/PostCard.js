@@ -66,7 +66,7 @@ export default function PostCard({ post }) {
 
     return (
         // Get snapshot of this element
-        <Container mt={'lg'} size={'sm'} p="md">
+        <Container p="sm">
             <Paper px={'lg'} py={'lg'} shadow="xl">
                 {/* <Card shadow="sm" p="lg">
                     <Card.Section>
